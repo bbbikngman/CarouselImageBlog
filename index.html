@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入字体和样式 -->
+    <link rel="stylesheet" href="https://static.fontawesome.com/css/fontawesome-app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap">
+    <style>
+        /* 全局样式 */
+        html, body {
+            padding: 0;
+            margin: 0;
+            font-family: "Source Sans Pro", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            overflow: hidden;
+            transition: background-image 0.7s ease-in-out;
+        }
+        .shell {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            background: rgba(99, 99, 99, 0.8)
+        }
+        .button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 350px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 50px;
+        }
+        .prev,
+        .next {
+            transform: transform 0.25s ease;
+            z-index: 1000;
+            bottom: 5px;
+        }
+        .prev i,
+        .next i {
+            font-size: 60px;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 0 0 10px #ffffff;
+        }
+        .shell_body {
+            width: 100%;
+            padding: 20px 0 150px 0;
+        }
+        .shell_slider {
+            position: relative;
+            transition: transform 1s ease-in-out;
+            background: transparent;
+        }
+        .item {
+            position: relative;
+            float: left;
+            margin:0 20px;
+        }
+        .frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .frame::after {
+            content: "";
+            position:absolute;
+            bottom: -16%;
+            width: 100%;
+            height: 60px;
+            background: #ffffff1c;
+            box-shadow: 0px 0px 15px 5px #ffffff1c;
+            transform: rotateX(90deg) translate3d(0px, -20px, 0px);
+        }
+
+        .box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid #fff;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .box h1,
+        .box span {
+            color: #fff;
+            transform: translateZ(20px);
+        }
+
+        .box h1 {
+            text-shadow: 0 0 30px #1f05b4;
+            font-size: 100px;
+        }
+        .box span {
+            position: absolute;
+            bottom: 20px;
+            padding: 0 25px;
+            text-shadow: 0 0 10px #1f05b4;
+        }
+
+        .front,
+        .left,
+        .right {
+            box-shadow: 0 0 50px #ffffff;
+            background-size: cover;
+        }
+        
+        .right,
+        .left {
+            top: 0;
+            width: 60px;
+            backface-visibility: hidden;
+        }
+
+        .left {
+            left: 0;
+            border-left-width: 5px;
+            transform: translate3d(1px, 0, -60px) rotateY(-90deg);
+        }
+        .right {
+            right: 0;
+            border-right-width: 5px;
+            transform: translate3d(-1px, 0, -60px) rotateY(90deg);
+            transform-origin: 100%;
+        }
+        .detail-page img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .detail-page button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .detail-page button:hover {
+            background-color: #ddd;
+        }
+
+    </style>
+</head>
+
+<body>
+   <div class="shell">
+    <div class="shell_body">
+        <div class="button">
+            <div class="prev"><i class="fas fa-arrow-left"></i></div>
+            <div class="next"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="shell_slider">
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>Columbia Icefield</h1>
+                        <span>It was Auguest but freezing wind coming down was about 0℃ </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>Columbia Icefield</h1>
+                        <span>It was Auguest but freezing wind coming down was about 0℃ </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>River Side</h1>
+                        <span>I've seen people kayaking here </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>January</h1>
+                        <span>In the month January i was enjoying the spring festival </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>January</h1>
+                        <span>In the month January i was enjoying the spring festival </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>January</h1>
+                        <span>In the month January i was enjoying the spring festival </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>January</h1>
+                        <span>In the month January i was enjoying the spring festival </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>January</h1>
+                        <span>In the month January i was enjoying the spring festival </span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</body>
+<script>
+    // get all item elements
+// 获取所有轮播项元素
+var items = document.getElementsByClassName('item');
+for (let i = 0; i < items.length; i++) {
+    let currentItem = items[i];
+    let frame = currentItem.getElementsByClassName('frame')[0];
+    let frontBox = currentItem.getElementsByClassName('front')[0];
+    let leftBox = currentItem.getElementsByClassName('left')[0];
+    let rightBox = currentItem.getElementsByClassName('right')[0];
+
+    // 设置背景图片
+    frontBox.style.backgroundImage = 'url(./img/' + (i + 1).toString() + '.jpg)';
+    leftBox.style.backgroundImage = 'url(./img/' + (i + 1).toString() + '.jpg)';
+    rightBox.style.backgroundImage = 'url(./img/' + (i + 1).toString() + '.jpg)';
+}
+
+// 初始化轮播图
+(function () {
+    "use strict"; // Enforce strict mode for cleaner code
+
+    // Get references to key elements
+    let shell = document.querySelector('.shell'); // Main carousel container
+    let slider = document.querySelector('.shell_slider'); // The slider containing all items
+    let prevBtn = document.querySelector('.prev'); // Previous button
+    let nextBtn = document.querySelector('.next'); // Next button
+    let items = document.querySelectorAll('.item'); // All carousel items
+    let currIndex = 0; // Current active item index
+    let interval, intervalTime = 3000; // Auto-slide interval
+
+    function init() {
+        resize(); // Adjust sizes based on screen dimensions
+        move(currIndex); // Move to the initial item
+        bindEvents(); // Attach event listeners
+        timer(); // Start auto-slide timer
+    }
+
+    function resize() {
+        // Resize carousel items dynamically based on screen size
+        let width = Math.max(window.innerWidth * 0.20, 275); // Minimum width of 275px
+        let height = window.innerHeight * 0.5; // Half of the screen height
+
+        slider.style.width = `${width * items.length}px`; // Set total slider width
+
+        items.forEach(item => {
+            item.style.width = `${width - 40}px`; // Account for margins (20px on each side)
+            item.style.height = `${height}px`;
+        });
+    }
+
+    function bindEvents() {
+        window.onresize = resize; // Adjust sizes on window resize
+
+        prevBtn.addEventListener('click', () => {
+            move(--currIndex); // Move to the previous item
+            timer(); // Restart auto-slide timer
+        });
+
+        nextBtn.addEventListener('click', () => {
+            move(++currIndex); // Move to the next item
+            timer(); // Restart auto-slide timer
+        });
+
+        items.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                if (index === currIndex) {
+                    showDetailPage(index); // Show detail page if clicking on the active item
+                } else {
+                    move(index); // Move directly to the clicked item
+                    timer(); // Restart auto-slide timer
+                }
+            });
+        });
+    }
+
+    function move(index) {
+        if (index < 0) index = items.length - 1; // Wrap around to last item if out of bounds
+        if (index >= items.length) index = 0;   // Wrap around to first item if out of bounds
+
+        currIndex = index; // Update current index
+
+        items.forEach((item, i) => {
+            let box = item.querySelector('.frame'); // Get the frame of each item
+
+            if (i === currIndex) {
+                item.classList.add('item--active'); // Highlight the active item
+                box.style.transform = "perspective(1200px)"; // Bring it to the front
+            } else {
+                item.classList.remove('item--active');
+                box.style.transform =
+                    `perspective(1200px) rotateY(${i < currIndex ? 40 : -40}deg)`; 
+                // Rotate other items away from the active one
+            }
+        });
+
+        slider.style.transform =
+            `translate3d(${(currIndex * -window.innerWidth * 0.2) + window.innerWidth / 2}px, 0, 0)`; 
+        // Center the active item in the middle of the screen
+
+        updateBackgroundImage(); // Update background image based on active item
+    }
+
+    function updateBackgroundImage() {
+        let frontBox = items[currIndex].querySelector(".front"); 
+        document.body.style.backgroundImage = frontBox.style.backgroundImage;
+    }
+
+    function timer() {
+        clearInterval(interval); 
+        interval = setInterval(() => { move(++currIndex); }, intervalTime);
+    }
+
+    function showDetailPage(index) {
+        shell.style.display = 'none'; 
+
+        const detailPage = document.createElement('div');
+        detailPage.classList.add('detail-page');
+        
+        detailPage.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        `;
+
+        const imgElement = document.createElement('img');
+        imgElement.src = `./img/${index + 1}.jpg`; 
+        imgElement.style.maxWidth = '90%';
+        imgElement.style.maxHeight = '90%';
+
+        const backButton = document.createElement('button');
+        backButton.textContent = 'Go Back';
+        
+        backButton.style.cssText = `
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        `;
+        
+        backButton.addEventListener('click', () => {
+            document.body.removeChild(detailPage);
+            shell.style.display = 'flex'; 
+            timer(); 
+        });
+
+        detailPage.appendChild(imgElement);
+        detailPage.appendChild(backButton);
+
+        document.body.appendChild(detailPage);
+
+        clearInterval(interval); 
+    }
+
+    init();
+})();
+
+
+
+</script>
+</html>
