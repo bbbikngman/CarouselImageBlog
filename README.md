@@ -1,5 +1,5 @@
 ## **Carousel Component**
-
+deployed at: https://bbbikngman.github.io/CarouselImageBlog/
 ## **Overview**
 
 This is a **carousel-style front-end component** designed to showcase images, blogs, or other content in an interactive and visually appealing way. It allows users to navigate through items using arrows or by clicking directly on an item. The component also includes a detailed view for selected items.
